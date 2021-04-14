@@ -18,7 +18,7 @@ Example of generated color map
 
 
 
-Articles that we found helpful:
+Articles that were found helpful:
 
 https://arxiv.org/pdf/1606.00915.pdf
 
