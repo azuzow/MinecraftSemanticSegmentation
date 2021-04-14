@@ -3,13 +3,9 @@ layout: default
 title:  Home
 ---
 
-Team Members:
-
-Kevin Chen, Alex Zuzow, Thy Ton
-
 Project Description:
 
-Our project involves segmenting the first person view of an agent and labeling each general structure. The program starts by scanning the nearby blocks and determining the surface block that would be in line of sight of the player. This allows us to know the location and label of any given block or entity in the player's line of sight. This is followed by segmenting the player's pov with the help of a few Malmo functions to generate a video/photo of their view. This is followed by a trainig algorithm using neural networks and learning to determine the various structures across this platform.
+The project involves segmenting the first person view of an agent with respect to the block types in minecraft. Frames are captured Using a few Malmo functions to generate a video/photo of the agents first person perspective and the corresponding ground truth labels. This is followed by a trainig a neural networks and learning to determine the various structures across this platform.
 
 Images:
 
