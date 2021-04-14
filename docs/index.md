@@ -9,7 +9,7 @@ The project involves segmenting the first person view of an agent with respect t
 
 Images:
 
-Example of generated color map
+Example of a generated color map
 
 
 ![alt text](images/sample2.png)
