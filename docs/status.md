@@ -34,18 +34,22 @@ I then use the package `cv2` to extract and pair up image frames from these vide
 
 
 ![](./images/original.png)
+
 *original frame*
 
 
 ![](./images/colormap.png)
+
 *ground truth frame*
 
 
 ![](./images/first_attempt.png)
+
 *my first attempt to generate the one-to-one mapping*
 
 
 ![](./images/second_attempt.png)
+
 *my second attempt to generate the one-to-one mapping*
 
 
