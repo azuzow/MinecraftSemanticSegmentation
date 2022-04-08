@@ -13,7 +13,7 @@ Link (incase above does not work): https://www.youtube.com/embed/_vTTZ5to-hQ
 
 ## Project Summary
 
-  Our goal for this project went through many iterations, we began by trying to figure out a project that was feasible while also piquing our interests. We had some project ideas before such as agent battle royale but ultimately settled on an image classification problem known as semantic segmentation. Semantic segmentation involves classifying each pixel of an image to some class e.g. water, sky, dirt.
+  My goal for this project went through many iterations, we began by trying to figure out a project that was feasible while also piquing my interests. I had some project ideas before such as agent battle royale but ultimately settled on an image classification problem known as semantic segmentation. Semantic segmentation involves classifying each pixel of an image to some class e.g. water, sky, dirt.
 
 
 #### Example of Segmented Image
@@ -42,7 +42,7 @@ Link (incase above does not work): https://www.youtube.com/embed/_vTTZ5to-hQ
 
 ### Data Gathering
 
-  Before we could apply any machine learning algorithms to aid us in our semantic segmentation task we needed to create the ground truth images for our training and test set. This introduced one of the obstacles of the project, Malmos color map producer. The color maps that Malmo returns although visually identify each entity/block with a unique color in practice this is not the case, for each block/entity there were tens of thousands of very similar-looking although unique colors that identified each block/entity.
+  Before I could apply any machine learning algorithms to aid me in my semantic segmentation task I needed to create the ground truth images for my training and test set. This introduced one of the obstacles of the project, Malmos color map producer. The color maps that Malmo returns although visually identify each entity/block with a unique color in practice this is not the case, for each block/entity there were tens of thousands of very similar-looking although unique colors that identified each block/entity.
 
 
 #### Initial Attempt at One-to-One Mapping
@@ -57,11 +57,11 @@ Link (incase above does not work): https://www.youtube.com/embed/_vTTZ5to-hQ
 <div style="text-align:center"><img src="./images/colormap.png" width="500"/> </div>
 
 
-  We had to find a way to compare all these similar colors and group them to create the ground truth images for our semantic segmentation algorithms. To solve this we found the most dominant color for each class, then converted every RGB image to a CIELAB color space, and then compared each color to one another using the CIE94 formula to find which were the most similar to their respective dominant colors. In doing so we had 132 different classes each with their unique color, this let us convert every RGB image into a greyscale image containing numbers from 0-132.
+  I had to find a way to compare all these similar colors and group them to create the ground truth images for my semantic segmentation algorithms. To solve this I found the most dominant color for each class, then converted every RGB image to a CIELAB color space, and then compared each color to one another using the CIE94 formula to find which were the most similar to their respective dominant colors. In doing so I had 162 different classes each with their unique color, this let me convert every RGB image into a greyscale image containing numbers from 0-162.
  
 
 
-  We then created a algorithm to automate the label making processes by teleport the agent randomly around the surface of the minecraft world while recording both, color map and normal video which resulted in a dataset of 13000 images with a resolution of 480x720. Part of our utilisation of the RGB images and manipulation with it involved conversion to CIELAB color space. This color space is designed for detecting small differences in the color. To convert from RGB to to LAB, there were two steps: conversion from RGB to an XYZ vector and then conversion of the vector to LAB.
+  I then created a algorithm to automate the label making processes by teleport the agent randomly around the surface of the minecraft world while recording both, color map and normal video which resulted in a dataset of 13000 images with a resolution of 480x720. Part of my utilisation of the RGB images and manipulation with it involved conversion to CIELAB color space. This color space is designed for detecting small differences in the color. To convert from RGB to to LAB, there were two steps: conversion from RGB to an XYZ vector and then conversion of the vector to LAB.
 
 Conversion of RGB to XYZ was multiplying the vector by a transformation matrix. 
 
@@ -75,7 +75,7 @@ Conversion of XYZ to LAB used a piecewise function that applied an equation that
 <div style="text-align:center"><img src="./images/xyztolab.png" width="500"/> </div>  
 
 
-We then compare the LAB colors using CIE94 formula which aims to compare colors in a way such that the difference is relatable to how humans would discern the diference in colors.
+I then compare the LAB colors using CIE94 formula which aims to compare colors in a way such that the difference is relatable to how humans would discern the diference in colors.
 
 <div style="text-align:center"><img src="./images/colorequations.png" width="500"/> </div>  
 
@@ -117,9 +117,9 @@ For segmentation, a k-means algorithm involves clustering based on the represent
 <div style="text-align:center"><img src="./images/kmeans/sample0.png" width="500"/> </div>
 
 
-### Our Best Model: DeepLabV3
+### My Best Model: DeepLabV3
 
-For our semantic segmentation problem, we used a neural network following the DeepLabv3 architecture pre trained on resnet 101 as our model of choice with a focal loss function.
+For semantic segmentation, I used a neural network following the DeepLabv3 architecture pre trained on resnet 101 as the model of choice with a focal loss function.
 Focal loss is defined as.
 
 <div style="text-align:center"><img src="./images/groundtruthclass.png" width="500"/> </div>
@@ -128,13 +128,13 @@ Focal loss is defined as.
 #### Advantages
 
 * This approach is very accurate in its predictions as seen in the evaluation section.
-* Given a dataset where we know what labels correspond to each class we are able to determine what blocks/entities are contained in a single image and what their location is within the image.
+* Given a dataset where with labels that correspond to each class I am able to determine what blocks/entities are contained in a single image and what their location is within the image.
 * The model is also able to generalize very well to the large amount of classes.
 
 #### Disadvantages
 
-* The model took a large amount of space in memory, the model itself was around 14 Gigs in size which left little remaining memeory on our gpu. 
-* We had to then determine wether we would rather have a larger image or a larger batch size where we ultimately chose a larger image size. 
+* The model took a large amount of space in memory, the model itself was around 14 Gigs in size which left little remaining memeory on the gpu. 
+* I had to then determine wether I would rather have a larger image or a larger batch size where I ultimately chose a larger image size. 
 * The long train time, each batch took around 13 seconds on average to complete which led to one epoch taking around 12 hours to complete.
 
 
@@ -170,7 +170,7 @@ Focal loss is defined as.
 ### Elbow Method for K-Means Evaluation
 
 
-For part of our K-means evaluation, we wanted to choose the optimal value of k. There were over 100 different colors and possible clusters, so we wanted an ideal k for that represented the sum of our images. We chose the elbow method which determined the optimal value for k based on the sum of squared distances (SSE) between data points and the cluster centroids. We first evaluated using the elbow method on one image with k=40 and then proceeded to test this multiple times to a numerous sample of images:
+For part of the K-means evaluation, I wanted to choose the optimal value of k. There were over 100 different colors and possible clusters, so I wanted an ideal k for that represented the sum of the images. I chose the elbow method which determined the optimal value for k based on the sum of squared distances (SSE) between data points and the cluster centroids. I first evaluated using the elbow method on one image with k=40 and then proceeded to test this multiple times to a numerous sample of images:
 
 
 #### Elbow Method on one image:
@@ -184,9 +184,9 @@ For part of our K-means evaluation, we wanted to choose the optimal value of k. 
 <div style="text-align:center"><img src="./images/kmeans/elbow_all_k40.png" width="400"/> </div>
 
 
-Looking at the example graph, it would seem k=2 would be a clear choice for optimality, however we chose not to go with k=2 because we found that the model was clustering between the sky and everything else. We chose the k value of 8 as from the sum of our tests, it seemed to be the next most optimal k value.
+Looking at the example graph, it would seem k=2 would be a clear choice for optimality, however I chose not to go with k=2 because I found that the model was clustering between the sky and everything else. I chose the k value of 8 as from the sum of my tests, it seemed to be the next most optimal k value.
 
-We applied k=2 and k=8 to our images to see the difference between these values. The results are shown below:
+I applied k=2 and k=8 to images to see the difference between these values. The results are shown below:
 
 #### Original:
 
@@ -217,7 +217,7 @@ Intersection over Union (IoU) is a metric which is designed to quantify the perc
 
 
 
-The IoU is then calculated by divding the intersection which is where the model predicted correctly by the union which is every pixel which was classified a specific class for either the ground truth or prediction. Through 51 epochs, we used this metric and to evaluate our model. the graphs show the IoU values for the training and testing over these epochs.
+The IoU is then calculated by divding the intersection which is where the model predicted correctly by the union which is every pixel which was classified a specific class for either the ground truth or prediction. Through 51 epochs, I used this metric and to evaluate my model. the graphs show the IoU values for the training and testing over these epochs.
 
 #### Training IoU:
 
@@ -231,13 +231,13 @@ The IoU is then calculated by divding the intersection which is where the model 
 <div style="text-align:center"><img src="./images/dataplots/ioute1.png" width="400"/> </div>
 
 
-An IoU value that is closer to 1 means it is more accurate. In the training, the IoU starts at 0 and quickly increases towards 0.9-1.0 which indicates our model is able to learn quickly and accurately. 
+An IoU value that is closer to 1 means it is more accurate. In the training, the IoU starts at 0 and quickly increases towards 0.9-1.0 which indicates my model is able to learn quickly and accurately. 
 
 
 ### Loss Function
 
 
-The loss functions for the training and testing data were graphed over 51 epochs. These represent the cost of our model and a good loss should decrease over time.
+The loss functions for the training and testing data were graphed over 51 epochs. These represent the cost of my model and a good loss should decrease over time.
 
 
 #### Training Loss
@@ -252,7 +252,7 @@ The loss functions for the training and testing data were graphed over 51 epochs
 <div style="text-align:center"><img src="./images/dataplots/losste.png" width="400"/> </div>
 
 
-From these graphs, we can interpret that our model was able to learn at a a quick rate. Both the training and testing were "spiky" and not smooth, but there was a consistent trend downwards at a curve. The training loss is not more accurate and also does not overfit the testing data, so our model is proven to work well. 
+From these graphs, I can interpret that my model was able to learn at a a quick rate. Both the training and testing were "spiky" and not smooth, but there was a consistent trend downwards at a curve. The training loss is not more accurate and also does not overfit the testing data, so my model is proven to work well. 
 
 
 ## References
